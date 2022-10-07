@@ -1,5 +1,6 @@
 class ElectricalEquipment:
     '''електрообладнання'''
+    '''v.1.1'''
     def __init__(self):
         self.ligt_position = False
         self.emergency_signal_position = False
