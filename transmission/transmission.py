@@ -1,7 +1,7 @@
 
 class Transmission:
     '''трансмісія'''
-    '''v 0.1'''
+    '''v 1.1'''
     def __init__(self):
         pass
 
