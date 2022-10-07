@@ -1,40 +1,46 @@
 class Car:
-    name = 'test model'
-    color = 'Grey'
+    def __init__(self, engine):
 
-    wheels = 4
-    wheels_type = 'summer'
+        self.engine = engine
 
-    def engine(self, status):
-        if type(status) == int:
-            return 'status must be \'on\' or \'off\''
-        elif status.upper() == 'ON':
-            return 'engine ON'
-        elif status.upper() == 'OFF':
-            return 'engine OFF'
+        self.isRunning = False
+
+    def turnKey(self, direction):
+        if direction == 'clockwise':
+            Engine.start(self)
+            print('Engine started')
+        if direction == 'counterclockwise':
+            Engine.stop(self)
+            print('Engine stopped')
+
+
+class Engine:
+
+    def __init__(self, model, age, manufacturer, volume, cylinders):
+        self.model = model
+        self.age = age
+        self.manufacturer = manufacturer
+        self.volume = volume
+        self.cylinders = cylinders
+
+        self.isRunning = False  # add
+
+    def start(self):
+        if self.isRunning:
+            raise Exception('Engine is already running!')
         else:
-            return 'status must be \'on\' or \'off\''
+            self.isRunning = True
+            return 'Engine started'  # add
 
-    def drive(self):
-        return 'Drive!'
+    def stop(self):
+        if self.isRunning:
+            self.isRunning = False
+        else:  # add
+            raise Exception('Engine is already stoped!')  # add
 
-    def change_color(self, color):
-        Car.color = color
-        return f'color changed! \nnew color: {Car.color}'
 
-    def change_wheels(self, change_wheels_type):
-        if change_wheels_type != 'summer' and change_wheels_type != 'winter' and change_wheels_type != 'all season':
-            return 'Wrong type of wheels!'
-        elif type(change_wheels_type) == int:
-            return 'Wrong type of wheels!'
-        else:
-            if self.wheels_type == change_wheels_type:
-                return 'You alredy have summer wheels!'
-            elif self.wheels_type != change_wheels_type:
-                self.wheels_type = change_wheels_type
-                return 'Wheels changed!'
+engine_1 = Engine('B1', 2, 'honda', 1.8, 4)  # обєкт класу Engine
 
-first_car = Car()
-print(first_car.change_wheels('all season'))
-print(first_car.wheels_type)
 
+lada = Car('B1')
+lada.turnKey('counterclockwise')
